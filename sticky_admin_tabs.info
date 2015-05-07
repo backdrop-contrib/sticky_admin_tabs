@@ -1,0 +1,5 @@
+name = Sticky Admin Tabs
+description = "Has styles & code to format the local tabs so they are fixed to the bottom of the browser."
+package = User Interface
+type = module
+backdrop = 1.x

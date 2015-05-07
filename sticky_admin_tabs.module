@@ -1,0 +1,100 @@
+<?php
+/**
+ * Implements hook_theme_registry_alter()
+ */
+function sticky_admin_tabs_theme_registry_alter(&$theme_registry){
+  // Override default theme function with custom one
+  $theme_registry['menu_local_tasks']['theme path'] = backdrop_get_path('module', 'sticky_admin_tabs');
+  $theme_registry['menu_local_tasks']['function'] = 'sticky_admin_tabs_theme_menu_local_tasks';
+  $theme_registry['menu_local_task']['theme path'] = backdrop_get_path('module', 'sticky_admin_tabs');
+  $theme_registry['menu_local_task']['function'] = 'sticky_admin_tabs_menu_local_task';
+}
+
+/**
+ * Theme override
+ */
+function sticky_admin_tabs_theme_menu_local_tasks(&$variables){
+  // Add custom CSS
+  $sticky_admin_tabs_path = backdrop_get_path('module', 'sticky_admin_tabs');
+  backdrop_add_css($sticky_admin_tabs_path . '/css/sticky-admin-tabs.css');
+
+  $output = '';
+
+  $taskRows = 0;
+
+  // Change headline to be more descriptive and add h5
+  if (!empty($variables['primary'])) {
+    $variables['primary']['#prefix'] = '<h5 class="element-invisible">' . t('Primary Page Actions') . '</h5>';
+    $variables['primary']['#prefix'] .= '<ul class="admin-tabs--primary">';
+    $variables['primary']['#suffix'] = '</ul>';
+    $output .= render($variables['primary']);
+    $taskRows = 1;
+  }
+  // Change headline to be more descriptive and make it h6
+  if (!empty($variables['secondary'])) {
+    $variables['secondary']['#prefix'] = '<h6 class="element-invisible">' . t('Secondary Page Actions') . '</h6>';
+    $variables['secondary']['#prefix'] .= '<ul class="admin-tabs--secondary">';
+    $variables['secondary']['#suffix'] = '</ul>';
+    $output .= render($variables['secondary']);
+    $taskRows = 2;
+  }
+
+  if(!empty($taskRows)){
+    // Add <nav> element & classes to style off of
+    $output =
+      '<nav class="admin-tabs__wrapper tab-rows--'.$taskRows.'">'.
+        $output.
+      '</nav>';
+
+    $bodyMargin = $taskRows * 40;
+
+    // Add space at the bottom of the page content
+    // at the bottom can be seen
+    drupal_add_css(
+      'body{
+        margin-bottom:'. strval($bodyMargin) .'px;
+      }',
+      array(
+        'group' => CSS_THEME,
+        'type' => 'inline',
+        'media' => 'screen',
+        'preprocess' => FALSE,
+        'weight' => '9999',)
+      );
+  }
+
+  return $output;
+}
+
+/**
+ * Theme override theme_menu_local_task
+ */
+function sticky_admin_tabs_menu_local_task($variables) {
+  $link = $variables['element']['#link'];
+  $link_text = $link['title'];
+
+  if (!empty($variables ['element']['#active'])) {
+    // Add text to indicate active tab for non-visual users.
+    $active = '<span class="element-invisible">' . t('(active tab)') . '</span>';
+
+    // If the link does not contain HTML already, check_plain() it now.
+    // After we set 'html'=TRUE the link will not be sanitized by l().
+    if (empty($link ['localized_options']['html'])) {
+      $link ['title'] = check_plain($link ['title']);
+    }
+    $link ['localized_options']['html'] = TRUE;
+    $link_text = t('!local-task-title!active', array('!local-task-title' => $link ['title'], '!active' => $active));
+  }
+
+  $li_classes = array('admin-tabs__tab');
+  $a_classes = array('admin-tabs__tab-link');
+
+  if (!empty($variables ['element']['#active'])) {
+    $li_classes[] = 'admin-tabs__tab--active';
+    $a_classes[] = 'admin-tabs__tab-link--active';
+  }
+
+  $link['localized_options']['attributes']['class'] = $a_classes;
+
+  return '<li class="' . implode(' ', $li_classes) . '">' . l($link_text, $link['href'], $link['localized_options']) . "</li>\n";
+}

@@ -1,0 +1,125 @@
+.admin-tabs__wrapper {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 1000;
+  width: 100%;
+  padding: 0;
+  background: #333;
+  background: rgba(0, 0, 0, 0.7); }
+
+.admin-tabs--primary, .admin-tabs--secondary {
+  position: relative;
+  margin: 0;
+  padding: 0; }
+
+.admin-tabs--primary {
+  width: 100%;
+  height: 36px;
+  border-top: 3px solid #fff;
+  overflow: visible; }
+  .admin-tabs--primary .admin-tabs__tab {
+    display: block;
+    float: left;
+    margin: 0 0 5px 5px;
+    padding: 0;
+    border: 0; }
+  .admin-tabs--primary .admin-tabs__tab-link {
+    display: block;
+    text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.5);
+    display: block;
+    border: 0;
+    margin: 0;
+    padding: 8px 15px;
+    border-radius: 0 0 6px 6px;
+    border-top: 2px solid #888;
+    border-bottom: 2px solid #333;
+    border-left: 1px solid #333;
+    border-right: 1px solid #333;
+    height: auto;
+    font-size: 13px;
+    line-height: 1.4;
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+    color: #11a;
+    background: #d2d2d2;
+    background: rgba(210, 210, 210, 0.9);
+    background-image: linear-gradient(#999, #ccc, #ccc); }
+    .admin-tabs--primary .admin-tabs__tab-link:hover, .admin-tabs--primary .admin-tabs__tab-link:active, .admin-tabs--primary .admin-tabs__tab-link:focus {
+      color: #22e;
+      background: #eee linear-gradient(#aaa, #eee, #eee, #eee);
+      border-top: 1px solid #555;
+      border-bottom: 3px solid #333;
+      border-left: 1px solid #222;
+      border-right: 1px solid #222;
+      text-decoration: none; }
+  .admin-tabs--primary .admin-tabs__tab-link--active, .admin-tabs--primary .admin-tabs__tab-link--active:hover, .admin-tabs--primary .admin-tabs__tab-link--active:active, .admin-tabs--primary .admin-tabs__tab-link--active:focus {
+    display: block;
+    background: #fff;
+    border: 2px solid #222;
+    border-top: 0;
+    color: #000; }
+
+.admin-tabs--secondary {
+  position: absolute;
+  bottom: 46px;
+  right: 0;
+  width: 100%;
+  height: 40px;
+  margin: 0;
+  padding: 0;
+  overflow: visible;
+  background: #CCC;
+  background: rgba(160, 160, 160, 0.9); }
+  .admin-tabs--secondary .admin-tabs__tab {
+    display: block;
+    float: left;
+    padding: 0;
+    margin: 0;
+    border-right: none; }
+  .admin-tabs--secondary .admin-tabs__tab-link {
+    position: relative;
+    display: block;
+    padding: 0 12px;
+    border-top: 1px solid #777;
+    border-right: 1px solid #999;
+    border-left: 1px solid #fff;
+    font-size: 12px;
+    line-height: 39px;
+    text-shadow: -1px -1px 1px #fff;
+    background: #fff;
+    border-radius: 0;
+    color: #000;
+    background: #eee linear-gradient(#ddd, #eee, #ccc); }
+    .admin-tabs--secondary .admin-tabs__tab-link:hover, .admin-tabs--secondary .admin-tabs__tab-link:active, .admin-tabs--secondary .admin-tabs__tab-link:focus {
+      text-decoration: none;
+      color: #000;
+      margin-top: 0;
+      background: #fff linear-gradient(#fff, #eee, #ddd); }
+  .admin-tabs--secondary .admin-tabs__tab-link--active, .admin-tabs--secondary .admin-tabs__tab-link--active:hover, .admin-tabs--secondary .admin-tabs__tab-link--active:active, .admin-tabs--secondary .admin-tabs__tab-link--active:focus {
+    background: #fff;
+    font-weight: bold; }
+  .admin-tabs--secondary .admin-tabs__tab-link--active:after {
+    content: ' ';
+    position: absolute;
+    top: -18px;
+    left: 50%;
+    margin: 0 0 0 -9px;
+    height: 0;
+    width: 0;
+    border: 9px solid #fff;
+    border-top-color: transparent;
+    border-left-color: transparent;
+    border-right-color: transparent; }
+  .admin-tabs--secondary .admin-tabs__tab-link--active:before {
+    content: ' ';
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    margin: 0 0 0 -10px;
+    height: 0;
+    width: 0;
+    border: 10px solid #555;
+    border-top-color: transparent;
+    border-left-color: transparent;
+    border-right-color: transparent; }
