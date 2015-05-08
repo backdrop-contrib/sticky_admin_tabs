@@ -46,14 +46,12 @@ function sticky_admin_tabs_theme_menu_local_tasks(&$variables){
         $output.
       '</nav>';
 
-    $bodyMargin = $taskRows * 40;
+    $bodyMargin = $taskRows * 50;
 
     // Add space at the bottom of the page content
     // at the bottom can be seen
     drupal_add_css(
-      'body{
-        margin-bottom:'. strval($bodyMargin) .'px;
-      }',
+      'body{ margin-bottom:'. strval($bodyMargin) .'px; }',
       array(
         'group' => CSS_THEME,
         'type' => 'inline',
