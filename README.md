@@ -18,3 +18,6 @@ Treating admin tabs as a global element is great for new users! (takes a little 
 
 ## Known issues
 If there are more tabs than there is horizontal space they'll disappear from view. This can be an issue with sites that have a lot of view modes, or on really small screens, the current 'disappearing act' is a stop gap so the layout doesn't break. Going to explore some different design solutions to that problem to see what works best. 
+
+## Maintainer
+[wesruv](https://github.com/wesruv)
